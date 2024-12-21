@@ -62,4 +62,35 @@ public class Evento {
         return this.postiPrenotati;
     }
 
+    // metodo prenota: aggiunge uno ai posti prenotati.
+    // Se l’evento è già passato o non ha posti disponibili deve restituire un messaggio di avviso.
+    public void prenota(){
+        
+        if(this.data.isBefore(LocalDate.now())){  //controllo che la data non sia già passata
+            System.out.println("Questa data è già passata");
+
+        }else if(this.postiPrenotati >= this.postiTotali){  //controllo che i posti non siano finiti
+            System.out.println("Non ci sono più posti disponibili");
+
+        }else{
+            this.postiPrenotati += 1;
+        }
+
+    }
+
+    //prove
+    public static void main(String[] args){
+        Evento evento = new Evento("evento", LocalDate.of(2024, 12, 21), 5);
+        evento.prenota();
+        evento.prenota();
+        evento.prenota();
+        evento.prenota();
+        evento.prenota();
+        evento.prenota();
+        evento.prenota();
+
+
+        System.out.println(evento.getData());
+    }
+
 }
