@@ -32,7 +32,34 @@ public class Evento {
         this.postiPrenotati = 0;
     }
 
+    // metodi getter e setter
 
+    // titolo sia in lettura che in scrittura
+    public String getTitolo(){
+        return this.titolo;
+    }
 
+    public void setTitolo(String titolo){
+        this.titolo = titolo;
+    }
+
+    // data sia in lettura che in scrittura
+    public LocalDate getData(){
+        return this.data;
+    }
+
+    public void setData(LocalDate data){
+        this.data = data;
+    }
+
+    // posti totali solo in lettura
+    public int getPostiTotali(){
+        return this.postiTotali;
+    }
+
+    // posti prenotati solo in lettura
+    public int getPostiPrenotati(){
+        return this.postiPrenotati;
+    }
 
 }
