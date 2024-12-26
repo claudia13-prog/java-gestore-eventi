@@ -1,5 +1,6 @@
 package org.java.gestore.eventi;
 import java.time.LocalDate; // importo la classe LocalDate
+import java.time.format.DateTimeFormatter;
 
 public class Evento {
     
@@ -17,13 +18,13 @@ public class Evento {
         //controllo che la data non sia già passata
         if(data.isBefore(LocalDate.now())){
             System.out.println("Questa data è già passata");
-            return;  // se la data è passata esce dal costruttore
+        
         }
 
         //controllo che il numero di posti totali sia positivo
         if(postiTotali <= 0){
             System.out.println("Il numero di posti deve essere positivo");
-            return; // se il numero di posti è negativo esce dal costruttore
+        
         }
 
         this.titolo = titolo;
@@ -67,11 +68,10 @@ public class Evento {
     public void prenota(){
         //controllo che la data non sia già passata
         if(this.data.isBefore(LocalDate.now())){  
-            System.out.println("Questa data è già passata");
-            return;
-        }
-        //controllo che i posti non siano finiti
-        if(this.postiPrenotati >= this.postiTotali){  
+            System.out.println("Questo evento è già passato");
+            
+        }else if(this.postiPrenotati >= this.postiTotali){    //controllo che i posti non siano finiti
+
             System.out.println("Non ci sono più posti disponibili");
 
         }else{
@@ -85,11 +85,10 @@ public class Evento {
     public void disdici(){
         //controllo che la data non sia già passata
         if(this.data.isBefore(LocalDate.now())){  
-            System.out.println("Questa data è già passata");
-            return;
-        }
-        //controllo se non ci sono prenotazioni
-        if(this.postiPrenotati <= 0){  
+            System.out.println("Questo evento è già passato");
+
+        }else if(this.postiPrenotati <= 0){  //controllo se non ci sono prenotazioni
+
             System.out.println("Non hai effettuato prenotazioni");
 
         }else{
@@ -97,11 +96,19 @@ public class Evento {
         }
     }
 
+    // override del metodo toString() in modo che venga restituita una stringa contenente: data formattata - titolo
+    @Override
+    public String toString() {
+        DateTimeFormatter formattazione = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return this.data.format(formattazione) + " - " + this.titolo;
+    }
+
     //prove
     public static void main(String[] args){
-        Evento evento = new Evento("evento", LocalDate.of(2024, 12, 20), 10);
+        Evento evento = new Evento("evento", LocalDate.of(2024, 12, 25), -10);
 
-        evento.disdici();
+        evento.prenota();
+        System.out.println(evento.toString());
 
 
 
