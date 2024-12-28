@@ -98,7 +98,7 @@ public class Evento {
 
     // override del metodo toString() in modo che venga restituita una stringa contenente: data formattata - titolo
     @Override
-    public String toString() {
+    public String toString(){
         DateTimeFormatter formattazione = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return this.data.format(formattazione) + " - " + this.titolo;
     }
