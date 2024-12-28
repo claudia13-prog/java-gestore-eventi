@@ -103,16 +103,5 @@ public class Evento {
         return this.data.format(formattazione) + " - " + this.titolo;
     }
 
-    //prove
-    public static void main(String[] args){
-        Evento evento = new Evento("evento", LocalDate.of(2024, 12, 25), -10);
-
-        evento.prenota();
-        System.out.println(evento.toString());
-
-
-
-        System.out.println(evento.getPostiPrenotati());
-    }
 
 }
