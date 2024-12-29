@@ -23,12 +23,37 @@ public class Main {
         // input per i posti totali
         System.out.println("Inserisci il numero di posti totali:");
         int inputPostiTotali = scanner.nextInt();
+        scanner.nextLine();  // Consumo la nuova linea
 
         // creo un nuovo evento
         Evento evento = new Evento(inputTitolo, dataEvento, inputPostiTotali);
 
-        System.out.println(evento);
-        System.out.println(evento.getPostiTotali());
+        // chiedere all’utente se e quante prenotazioni vuole fare e provare ad effettuarle implementando opportuni controlli
+        if(evento.getPostiTotali() > 0 && !dataEvento.isBefore(LocalDate.now())){
+            System.out.println("Evento creato con successo: " + evento + ". Vuoi prenotare dei posti? (si/no) ");
+            String risposta = scanner.nextLine();
+            
+            if(risposta.equals("no")){
+                System.out.println("Vabe fa niente ciao");
+            }else if(risposta.equals("si")){
+                System.out.println("Quanti posti vuoi prenotare?");
+                int prenotazioni = scanner.nextInt();
+
+                for(int i = 0; i < prenotazioni; i++){
+                    evento.prenota();
+                }
+
+            }else{
+                System.out.println("Risposta non valida");
+
+            }
+        }
+
+        System.out.println("Numero di posti prenotati: " + evento.getPostiPrenotati());
+        System.out.println("Numero di posti disponibili: " + (evento.getPostiTotali() - evento.getPostiPrenotati()));
+
+
+        scanner.close();
     }
 
 }

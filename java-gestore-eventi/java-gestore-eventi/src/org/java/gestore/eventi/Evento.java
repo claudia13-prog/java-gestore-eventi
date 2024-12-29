@@ -17,7 +17,7 @@ public class Evento {
         
         //controllo che la data non sia già passata
         if(data.isBefore(LocalDate.now())){
-            System.out.println("Questa data è già passata");
+            System.out.println("La data dell'evento è già passata");
         
         }
 
