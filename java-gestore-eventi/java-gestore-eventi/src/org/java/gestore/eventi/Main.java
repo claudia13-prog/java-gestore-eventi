@@ -31,26 +31,67 @@ public class Main {
         // chiedere all’utente se e quante prenotazioni vuole fare e provare ad effettuarle implementando opportuni controlli
         if(evento.getPostiTotali() > 0 && !dataEvento.isBefore(LocalDate.now())){
             System.out.println("Evento creato con successo: " + evento + ". Vuoi prenotare dei posti? (si/no) ");
-            String risposta = scanner.nextLine();
+            String inputPrenotazione = scanner.nextLine();
             
-            if(risposta.equals("no")){
-                System.out.println("Vabe fa niente ciao");
-            }else if(risposta.equals("si")){
+            if(inputPrenotazione.equals("no")){
+                System.out.println("Ok, speriamo di vederti al prossimo evento!");
+            }else if(inputPrenotazione.equals("si")){
                 System.out.println("Quanti posti vuoi prenotare?");
                 int prenotazioni = scanner.nextInt();
+                scanner.nextLine();  // Consumo la nuova linea
 
-                for(int i = 0; i < prenotazioni; i++){
-                    evento.prenota();
+                if(prenotazioni <= evento.getPostiTotali() && prenotazioni > 0){
+                    
+                    for(int i = 0; i < prenotazioni; i++){
+                        evento.prenota();
+                    }
+
+                    // Stampare a video il numero di posti prenotati e quelli disponibili
+                    System.out.println("Numero di posti prenotati: " + evento.getPostiPrenotati());
+                    System.out.println("Numero di posti disponibili: " + (evento.getPostiTotali() - evento.getPostiPrenotati()));
+
+                    // Chiedere all’utente se e quanti posti vuole disdire
+                    // Provare ad effettuare le disdette, implementando opportuni controlli
+                    System.out.println("Vuoi effettuare una disdetta? (si/no)");
+                    String inputDisdetta = scanner.nextLine();
+
+                    if(inputDisdetta.equals("no")){
+                        System.out.println("Perfetto, ci vediamo all'evento!");
+                    }else if(inputDisdetta.equals("si")){
+                        System.out.println("Quanti posti vuoi disdire?");
+                        int disdette = scanner.nextInt();
+                        
+                        if(disdette <= 0 || disdette > evento.getPostiPrenotati()){
+                            System.out.println("Il numero di posti da disdire deve essere almeno 1 e non deve superare il numero di posti prenotati");
+                        }else{
+
+                            for(int i = 0; i < disdette; i++){
+                                evento.disdici();
+                            }
+        
+                            // Stampare a video il numero di posti prenotati e quelli disponibili
+                            System.out.println("Numero di posti prenotati: " + evento.getPostiPrenotati());
+                            System.out.println("Numero di posti disponibili: " + (evento.getPostiTotali() - evento.getPostiPrenotati()));
+                        }
+
+                        
+                    }else{
+                        System.out.println("Risposta non valida");
+                    }
+                
+
+                }else{
+                    System.out.println("Il numero di posti prenotabili deve essere almeno 1 e non deve superare il numero di posti disponibili");
                 }
+                
+
+                
+
 
             }else{
                 System.out.println("Risposta non valida");
-
             }
         }
-
-        System.out.println("Numero di posti prenotati: " + evento.getPostiPrenotati());
-        System.out.println("Numero di posti disponibili: " + (evento.getPostiTotali() - evento.getPostiPrenotati()));
 
 
         scanner.close();
