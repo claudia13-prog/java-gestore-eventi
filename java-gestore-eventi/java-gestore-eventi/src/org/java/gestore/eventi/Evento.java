@@ -53,6 +53,12 @@ public class Evento {
         this.data = data;
     }
 
+    // metodo che restituisce data formattata
+    public String getDataFormattata(){
+        DateTimeFormatter formattazione = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return this.data.format(formattazione);
+    }
+
     // posti totali solo in lettura
     public int getPostiTotali(){
         return this.postiTotali;
@@ -99,8 +105,7 @@ public class Evento {
     // override del metodo toString() in modo che venga restituita una stringa contenente: data formattata - titolo
     @Override
     public String toString(){
-        DateTimeFormatter formattazione = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return this.data.format(formattazione) + " - " + this.titolo;
+        return getDataFormattata() + " - " + this.titolo;
     }
 
 
