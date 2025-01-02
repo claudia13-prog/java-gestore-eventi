@@ -1,6 +1,7 @@
 package org.java.gestore.eventi;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.text.DecimalFormat;
 
 public class Concerto extends Evento{
     //attributi
@@ -43,15 +44,18 @@ public class Concerto extends Evento{
         return getDataFormattata() + " " + getOra();
     }
 
-
-
+    // metodo per restituire prezzo formattato
+    public String getPrezzoFormattato(){
+        DecimalFormat formattazioneDecimale = new DecimalFormat("##.##");
+        return formattazioneDecimale.format(this.prezzo) + " E";
+    }
 
 
     //prove
     public static void main(String[] args) {
 
-        Concerto concerto = new Concerto("titolo", LocalDate.of(2025, 3, 20), 10, LocalTime.of(21, 0), 10.00);
-        System.out.println(concerto.getDataOraFormattata());
+        Concerto concerto = new Concerto("titolo", LocalDate.of(2025, 3, 20), 10, LocalTime.of(21, 0), 46.5466750);
+        System.out.println(concerto.getPrezzoFormattato());
         System.out.println(concerto.toString());
 
     }
