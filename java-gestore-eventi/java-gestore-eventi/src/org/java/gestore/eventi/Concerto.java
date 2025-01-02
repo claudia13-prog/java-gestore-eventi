@@ -50,13 +50,11 @@ public class Concerto extends Evento{
         return formattazioneDecimale.format(this.prezzo) + " E";
     }
 
-
-    //prove
-    public static void main(String[] args) {
-
-        Concerto concerto = new Concerto("titolo", LocalDate.of(2025, 3, 20), 10, LocalTime.of(21, 0), 46.5466750);
-        System.out.println(concerto.getPrezzoFormattato());
-        System.out.println(concerto.toString());
-
+    // override del metodo toString() che restituisce una stringa del tipo: data e ora formattata - titolo - prezzo formattato
+    @Override
+    public String toString(){
+        return getDataOraFormattata() + " - " + getTitolo() + " - " + getPrezzoFormattato();
     }
+
+
 }
