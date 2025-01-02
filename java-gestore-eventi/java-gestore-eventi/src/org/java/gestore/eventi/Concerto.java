@@ -37,4 +37,22 @@ public class Concerto extends Evento{
     public void setPrezzo(double prezzo){
         this.prezzo = prezzo;
     }
+
+    // metodo per restituire data e ora formattata
+    public String getDataOraFormattata(){
+        return getDataFormattata() + " " + getOra();
+    }
+
+
+
+
+
+    //prove
+    public static void main(String[] args) {
+
+        Concerto concerto = new Concerto("titolo", LocalDate.of(2025, 3, 20), 10, LocalTime.of(21, 0), 10.00);
+        System.out.println(concerto.getDataOraFormattata());
+        System.out.println(concerto.toString());
+
+    }
 }
