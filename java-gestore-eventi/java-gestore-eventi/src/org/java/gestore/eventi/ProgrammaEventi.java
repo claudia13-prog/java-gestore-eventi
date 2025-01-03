@@ -36,6 +36,16 @@ public class ProgrammaEventi {
     }
 
 
+    // metodo che restituisce quanti eventi sono presenti nel programma
+    public int numeroEventi(){
+        return this.eventi.size();
+    }
+
+    // metodo che svuota la lista di eventi
+    public void svuotaLista(){
+        this.eventi.clear();
+    }
+
 
     //prove
     public static void main(String[] args) {
@@ -47,6 +57,8 @@ public class ProgrammaEventi {
         listaEventi.aggiungiEvento(concerto);
         listaEventi.aggiungiEvento(compleanno);
         listaEventi.aggiungiEvento(meeting);
-        System.out.println(listaEventi.stessaData(LocalDate.of(2025, 04, 13)));
+        System.out.println(listaEventi.numeroEventi());
+        listaEventi.svuotaLista();
+        System.out.println(listaEventi.numeroEventi());
     }
 }
