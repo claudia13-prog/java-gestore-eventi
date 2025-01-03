@@ -47,12 +47,15 @@ public class ProgrammaEventi {
     }
 
     // metodo che restituisce una stringa che mostra il titolo del programma e tutti gli eventi ordinati per data
-    public void ordinaEventiPerData(){
+    public String listaProgrammaOrdinata(){
+
+        List<String> listaOrdinata = new ArrayList<>();
 
         for(Evento evento : this.eventi){
-            System.out.println(evento.toString());
+            listaOrdinata.add(evento.toString());
         }
 
+        return this.titolo + ":\n" + String.join("\n", listaOrdinata);
     }
 
 
@@ -66,7 +69,6 @@ public class ProgrammaEventi {
         listaEventi.aggiungiEvento(concerto);
         listaEventi.aggiungiEvento(compleanno);
         listaEventi.aggiungiEvento(meeting);
-        System.out.println(listaEventi.numeroEventi());
-        listaEventi.ordinaEventiPerData();
+        System.out.println(listaEventi.listaProgrammaOrdinata());
     }
 }
