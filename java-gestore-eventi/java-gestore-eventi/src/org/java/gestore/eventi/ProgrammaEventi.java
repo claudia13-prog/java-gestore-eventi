@@ -22,20 +22,31 @@ public class ProgrammaEventi {
         this.eventi.add(evento);
     }
 
+    //  metodo che restituisce una lista con tutti gli eventi presenti in una certa data
+    public List<Evento> stessaData(LocalDate data){
+        List<Evento> eventiStessaData = new ArrayList<>();
+        
+        for(Evento evento : this.eventi){
+            if(evento.getData().equals(data)){
+                eventiStessaData.add(evento);
+            }
+        }
 
+        return eventiStessaData;
+    }
 
 
 
     //prove
     public static void main(String[] args) {
         ProgrammaEventi listaEventi = new ProgrammaEventi("Lista Eventi");
-        Evento concerto = new Concerto("AC/DC", LocalDate.of(2025, 07, 20), 300, LocalTime.of(21, 0), 80.00);
+        Evento concerto = new Concerto("Concerto AC/DC", LocalDate.of(2025, 07, 20), 300, LocalTime.of(21, 0), 80.00);
         Evento compleanno = new Evento("compleanno", LocalDate.of(2025, 04, 13), 30);
         Evento meeting = new Evento("Meeting di lavoro", LocalDate.of(2025, 07, 20), 30);
 
         listaEventi.aggiungiEvento(concerto);
         listaEventi.aggiungiEvento(compleanno);
         listaEventi.aggiungiEvento(meeting);
-        System.out.println(listaEventi.eventi);
+        System.out.println(listaEventi.stessaData(LocalDate.of(2025, 04, 13)));
     }
 }
